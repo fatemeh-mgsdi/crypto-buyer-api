@@ -5,6 +5,7 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from django.shortcuts import get_object_or_404
 
 from .models import Deposit, PendingTransaction
 from .exchange_handler import buy_from_exchange
@@ -40,7 +41,7 @@ class BuyCryptoView(APIView):
         crypto_id = request.data.get('crypto_id')
         quantity = request.data.get('quantity')
 
-        crypto = Cryptocurrency.objects.get(id=crypto_id)
+        crypto = get_object_or_404(Cryptocurrency, id=crypto_id)
         amount = quantity * crypto.price_buy
 
         if user.balance < amount:
