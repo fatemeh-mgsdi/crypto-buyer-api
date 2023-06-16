@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "cryptocurrency",
     "deposit",
     "wallet",
+    "drf_yasg",
 ]
 
 MIDDLEWARE = [

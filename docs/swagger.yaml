@@ -1,0 +1,291 @@
+swagger: '2.0'
+info:
+  title: Crypto Buyer
+  description: Crypto buyer API
+  version: 0.0.1
+host: 127.0.0.1:8000
+schemes:
+- http
+basePath: /api
+consumes:
+- application/json
+produces:
+- application/json
+securityDefinitions:
+  Basic:
+    type: basic
+security:
+- Basic: []
+paths:
+  /crypto/:
+    get:
+      operationId: crypto_list
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Cryptocurrency'
+      tags:
+      - crypto
+    post:
+      operationId: crypto_create
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Cryptocurrency'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/Cryptocurrency'
+      tags:
+      - crypto
+    parameters: []
+  /crypto/{id}/:
+    get:
+      operationId: crypto_read
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Cryptocurrency'
+      tags:
+      - crypto
+    put:
+      operationId: crypto_update
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Cryptocurrency'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Cryptocurrency'
+      tags:
+      - crypto
+    patch:
+      operationId: crypto_partial_update
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Cryptocurrency'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Cryptocurrency'
+      tags:
+      - crypto
+    delete:
+      operationId: crypto_delete
+      description: ''
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+      - crypto
+    parameters:
+    - name: id
+      in: path
+      description: A unique integer value identifying this cryptocurrency.
+      required: true
+      type: integer
+  /crypto/{id}/change_past24/:
+    get:
+      operationId: crypto_change_past24
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Cryptocurrency'
+      tags:
+      - crypto
+    parameters:
+    - name: id
+      in: path
+      description: A unique integer value identifying this cryptocurrency.
+      required: true
+      type: integer
+  /deposit/:
+    get:
+      operationId: deposit_list
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - deposit
+    parameters: []
+  /deposit/buy-crypto/:
+    post:
+      operationId: deposit_buy-crypto_create
+      description: ''
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - deposit
+    parameters: []
+  /deposit/charge-wallet/:
+    post:
+      operationId: deposit_charge-wallet_create
+      description: ''
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - deposit
+    parameters: []
+  /user/login/:
+    post:
+      operationId: user_login_create
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/User'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/User'
+      tags:
+      - user
+    parameters: []
+  /user/register/:
+    post:
+      operationId: user_register_create
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/User'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/User'
+      tags:
+      - user
+    parameters: []
+  /wallet/:
+    get:
+      operationId: wallet_list
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - wallet
+    parameters: []
+definitions:
+  Cryptocurrency:
+    required:
+    - name
+    - symbol
+    - price_buy
+    - price_sell
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      name:
+        title: Name
+        type: string
+        maxLength: 255
+        minLength: 1
+      symbol:
+        title: Symbol
+        type: string
+        maxLength: 255
+        minLength: 1
+      price_buy:
+        title: Price buy
+        type: string
+        format: decimal
+      price_sell:
+        title: Price sell
+        type: string
+        format: decimal
+      last_update:
+        title: Last update
+        type: string
+        format: date-time
+        readOnly: true
+      past24:
+        title: Past24
+        type: string
+        format: decimal
+  User:
+    required:
+    - password
+    - email
+    - first_name
+    - last_name
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      password:
+        title: Password
+        type: string
+        minLength: 1
+      last_login:
+        title: Last login
+        type: string
+        format: date-time
+        x-nullable: true
+      email:
+        title: Email
+        type: string
+        format: email
+        maxLength: 254
+        minLength: 1
+      first_name:
+        title: First name
+        type: string
+        maxLength: 45
+        minLength: 1
+      last_name:
+        title: Last name
+        type: string
+        maxLength: 45
+        minLength: 1
+      balance:
+        title: Balance
+        type: string
+        format: decimal
+      is_superuser:
+        title: Is superuser
+        type: boolean
