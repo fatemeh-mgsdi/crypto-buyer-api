@@ -6,6 +6,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.shortcuts import get_object_or_404
+from django.conf import settings
 
 from .models import Deposit, PendingTransaction
 from .exchange_handler import buy_from_exchange
@@ -58,7 +59,7 @@ class BuyCryptoView(APIView):
         wallet.quantity += quantity
         wallet.save()
 
-        if amount >= 10:
+        if amount >= settings.EXCHANGE_THRESHOLD:
             buy_from_exchange(crypto.symbol, amount)
             return Response(status=status.HTTP_201_CREATED)
         else:

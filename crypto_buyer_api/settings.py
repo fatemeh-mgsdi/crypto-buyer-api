@@ -145,3 +145,4 @@ ADMIN_CREDENTIALS =  {
     'email':os.getenv("ADMIN_EMAIL"),
     'password': os.getenv("ADMIN_PASSWORD")
 }
+EXCHANGE_THRESHOLD = 10
