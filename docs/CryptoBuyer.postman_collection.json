@@ -25,14 +25,11 @@
 					"raw": "{\n    \"first_name\": \"fatemeh\",\n    \"last_name\": \"maghoudi\",\n    \"email\": \"fatemeh@gmail.com\",\n    \"password\": \"123456\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8000/api/user/register/",
-					"protocol": "http",
+					"raw": "{{BASE_URL}}/user/register/",
 					"host": [
-						"localhost"
+						"{{BASE_URL}}"
 					],
-					"port": "8000",
 					"path": [
-						"api",
 						"user",
 						"register",
 						""
@@ -202,12 +199,24 @@
 		},
 		{
 			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let responseData = pm.response.json();",
+							"pm.collectionVariables.set(\"TOKEN\", responseData.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\": \"fatemeh@gmail.com\",\n    \"password\": \"123456\"\n}",
+					"raw": "{\n    \"email\": \"adminhacker@gmail.com\",\n    \"password\": \"2281376\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -215,14 +224,11 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8000/api/user/login/",
-					"protocol": "http",
+					"raw": "{{BASE_URL}}/user/login/",
 					"host": [
-						"localhost"
+						"{{BASE_URL}}"
 					],
-					"port": "8000",
 					"path": [
-						"api",
 						"user",
 						"login",
 						""
@@ -393,7 +399,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Token 18a2dd82fed00ea85725db2ff17cd8b995bbde92",
+						"value": "Token {{TOKEN}}",
 						"type": "text"
 					}
 				],
@@ -407,14 +413,11 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8000/api/crypto/",
-					"protocol": "http",
+					"raw": "{{BASE_URL}}/crypto/",
 					"host": [
-						"localhost"
+						"{{BASE_URL}}"
 					],
-					"port": "8000",
 					"path": [
-						"api",
 						"crypto",
 						""
 					]
@@ -593,14 +596,11 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8000/api/crypto/",
-					"protocol": "http",
+					"raw": "{{BASE_URL}}/crypto/",
 					"host": [
-						"localhost"
+						"{{BASE_URL}}"
 					],
-					"port": "8000",
 					"path": [
-						"api",
 						"crypto",
 						""
 					]
@@ -682,14 +682,11 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8000/api/crypto/1",
-					"protocol": "http",
+					"raw": "{{BASE_URL}}/crypto/1",
 					"host": [
-						"localhost"
+						"{{BASE_URL}}"
 					],
-					"port": "8000",
 					"path": [
-						"api",
 						"crypto",
 						"1"
 					]
@@ -839,7 +836,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Token 18a2dd82fed00ea85725db2ff17cd8b995bbde92",
+						"value": "Token {{TOKEN}}",
 						"type": "text"
 					}
 				],
@@ -853,14 +850,11 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8000/api/crypto/2/",
-					"protocol": "http",
+					"raw": "{{BASE_URL}}/crypto/2/",
 					"host": [
-						"localhost"
+						"{{BASE_URL}}"
 					],
-					"port": "8000",
 					"path": [
-						"api",
 						"crypto",
 						"2",
 						""
@@ -1123,18 +1117,21 @@
 			"name": "Delete crypto by id",
 			"request": {
 				"method": "DELETE",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{TOKEN}}",
+						"type": "text"
+					}
+				],
 				"url": {
-					"raw": "http://localhost:8000/api/crypto/3/",
-					"protocol": "http",
+					"raw": "{{BASE_URL}}/crypto/1/",
 					"host": [
-						"localhost"
+						"{{BASE_URL}}"
 					],
-					"port": "8000",
 					"path": [
-						"api",
 						"crypto",
-						"3",
+						"1",
 						""
 					]
 				}
@@ -1292,14 +1289,11 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8000/api/crypto/2/change_past24",
-					"protocol": "http",
+					"raw": "{{BASE_URL}}/crypto/2/change_past24",
 					"host": [
-						"localhost"
+						"{{BASE_URL}}"
 					],
-					"port": "8000",
 					"path": [
-						"api",
 						"crypto",
 						"2",
 						"change_past24"
@@ -1384,7 +1378,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Token 1c31abd500d76422c4a1d9fcc6551d9175c4e855",
+						"value": "Token {{TOKEN}}",
 						"type": "text"
 					}
 				],
@@ -1398,14 +1392,11 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8000/api/deposit/charge-wallet/",
-					"protocol": "http",
+					"raw": "{{BASE_URL}}/deposit/charge-wallet/",
 					"host": [
-						"localhost"
+						"{{BASE_URL}}"
 					],
-					"port": "8000",
 					"path": [
-						"api",
 						"deposit",
 						"charge-wallet",
 						""
@@ -1588,13 +1579,13 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Token 3f2c0ad919b036c93b6435be689a32102c61c9e4",
+						"value": "Token {{TOKEN}}",
 						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"crypto_id\":1,\n    \"quantity\": 1\n}",
+					"raw": "{\n    \"crypto_id\":2,\n    \"quantity\": 40\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1602,14 +1593,11 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8000/api/deposit/buy-crypto/",
-					"protocol": "http",
+					"raw": "{{BASE_URL}}/deposit/buy-crypto/",
 					"host": [
-						"localhost"
+						"{{BASE_URL}}"
 					],
-					"port": "8000",
 					"path": [
-						"api",
 						"deposit",
 						"buy-crypto",
 						""
@@ -1875,19 +1863,16 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Token 3f2c0ad919b036c93b6435be689a32102c61c9e4",
+						"value": "Token {{TOKEN}}",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8000/api/deposit/",
-					"protocol": "http",
+					"raw": "{{BASE_URL}}/deposit/",
 					"host": [
-						"localhost"
+						"{{BASE_URL}}"
 					],
-					"port": "8000",
 					"path": [
-						"api",
 						"deposit",
 						""
 					]
@@ -1976,19 +1961,16 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Token 3f2c0ad919b036c93b6435be689a32102c61c9e4",
+						"value": "Token {{TOKEN}}",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8000/api/wallet/",
-					"protocol": "http",
+					"raw": "{{BASE_URL}}/wallet/",
 					"host": [
-						"localhost"
+						"{{BASE_URL}}"
 					],
-					"port": "8000",
 					"path": [
-						"api",
 						"wallet",
 						""
 					]
@@ -2069,6 +2051,38 @@
 					"body": "[\n    {\n        \"id\": 3,\n        \"quantity\": 3,\n        \"balance\": \"15.0000000000\",\n        \"user\": 2,\n        \"crypto\": 2\n    },\n    {\n        \"id\": 1,\n        \"quantity\": 3,\n        \"balance\": \"12.0000000000\",\n        \"user\": 2,\n        \"crypto\": 1\n    }\n]"
 				}
 			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_URL",
+			"value": "http://localhost:8000/api",
+			"type": "string"
+		},
+		{
+			"key": "TOKEN",
+			"value": "",
+			"type": "string"
 		}
 	]
 }
