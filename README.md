@@ -95,3 +95,28 @@ docker-compose --env-file=.env up
 
 Once the containers are running, you can access the API at http://localhost:8000/.
 
+#### Running Tests
+
+To run the tests, follow these steps:
+
+1. Activate the virtual environment:
+
+```bash
+source venv/bin/activate
+```
+
+2. Ensure that the project's dependencies are installed:
+
+```bash
+pip install -r requirements.txt
+```
+
+3. Run the tests:
+
+```
+python manage.py test
+```
+
+This will run all the tests in the project.
+
+Once the tests have completed running, you should see a summary of the test results in your terminal.
