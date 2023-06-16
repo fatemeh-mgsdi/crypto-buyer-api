@@ -15,23 +15,21 @@ class UserManager(BaseUserManager):
 
         user.save()
         return user
-    
+
     def create_superuser(self, email, password=None, **extra_fields):
         extra_fields.setdefault("is_superuser", True)
         return self.create_user(email, password, **extra_fields)
 
 
-
-
-class User(AbstractBaseUser, PermissionsMixin):
+class User(AbstractBaseUser):
     email = models.EmailField(unique=True)
     first_name = models.CharField(max_length=45)
     last_name = models.CharField(max_length=45)
-    balance = models.DecimalField(max_digits=5, decimal_places=2, default=0.0)
-
+    balance = models.DecimalField(max_digits=20, decimal_places=10, default=0.0)
+    is_superuser = models.BooleanField(default=False)
 
     objects = UserManager()
-    USERNAME_FIELD = 'email'
+    USERNAME_FIELD = "email"
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
